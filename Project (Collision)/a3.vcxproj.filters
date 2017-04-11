@@ -57,16 +57,7 @@
     <ClCompile Include="vecmath\src\Quat4f.cpp">
       <Filter>Resource Files\Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="pendulumSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="particleSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="simpleSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="ClothSystem.cpp">
       <Filter>Resource Files\Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="BoxSystem.cpp">
@@ -107,16 +98,7 @@
     <ClInclude Include="vecmath\include\Vector2f.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="pendulumSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="particleSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="ClothSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="BoxSystem.h">

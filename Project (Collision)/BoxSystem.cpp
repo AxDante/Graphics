@@ -120,44 +120,11 @@ void BoxSystem::dragMotion() {
 	return;
 }
 
-// TODO: implement evalF
-// for a given state, evaluate f(X,t)
 vector<Vector3f> BoxSystem::evalF(vector<Vector3f> state)
 {
 	
-
-	/*
-	for (unsigned i = 0; i < m_vVecState.size(); i += 1) {
-
-		Vector3f pos = state[2 * i];
-		Vector3f vel = state[2 * i + 1];
-
-		
-		double density_i = 0;
-
-		for (unsigned j = 0; j < state.size(); j += 1) {
-			if (j != i) {
-
-				Particle particle_j = state[j];
-
-				Vector3f delta = position - particle_j.getPosition();
-				if (delta.absSquared() < H*H) {
-					density_i += WPoly6(delta);
-				}
-			}
-		}
-		particle.density() = .001 + PARTICLE_MASS*density_i;
-		
-	}
-	
-	*/
-
-
-
 	vector<Vector3f> f;
 
-
-	
 	// Variable Definition
 	const float G = 0.980665;		// Graviational acceleration
 	const float k_drag = 0.01;			// drag constant
@@ -168,8 +135,6 @@ vector<Vector3f> BoxSystem::evalF(vector<Vector3f> state)
 
 		Vector3f pos = state[2 * i];
 		Vector3f vel = state[2 * i + 1];
-
-		
 
 		Vector3f F_grav = part_mass * Vector3f(0, -G, 0);
 		Vector3f F_vic = -k_drag * vel;
@@ -190,62 +155,7 @@ vector<Vector3f> BoxSystem::evalF(vector<Vector3f> state)
 			}
 		}
 
-		const float H = 0.03;//.0457;
-		/*
-		Vector3f f_pressure;
-		Vector3f f_viscosity;
-		Vector3f f_surface;
-		Vector3f colorFieldNormal;
-		float colorFieldLaplacian;
-		for (unsigned j = 0; j < state.size(); j++) {
-			if (j != i) {
-
-				Vector3f delta = pos - state[2 * j];
-
-				if (delta.absSquared() < H*H) {
-
-					//**  ---------------pressure computation-----------------**
-
-					// sample implementation value: pi/roi2 + pj/roj2
-					float p_factor = (pressure / (density*density)) + (particle_j.getPressure() / (particle_j.density()*particle_j.density()));
-
-					// Mueller value: (pi + pj) / 2roj
-					// float p_factor = (pressure+particle_j.getPressure()) / (2*particle_j.getDensity()); 
-
-					// Lecture video value: pi/roi + pj/roj
-					// float p_factor = pressure/density + particle_j.getPressure()/particle_j.getDensity();
-					f_pressure += p_factor*WSpiky(delta);
-					//**  ---------------pressure computation-----------------**
-
-
-					//**  ---------------viscosity computation-----------------**
-					float kernel_distance_viscosity = H - delta.abs();
-
-					Vector3f v_factor = (particle_j.getVelocity() - velocity);// / particle_j.getDensity();
-
-					Vector3f viscosity_term = (WViscosity(delta) / particle_j.getDensity())*v_factor;
-					f_viscosity += viscosity_term;
-					//**  ---------------viscosity computation-----------------**
-
-
-					//**  ---------------surface tension computation-----------------**
-					colorFieldNormal += WPoly6Grad(delta) / particle_j.density();
-					colorFieldLaplacian += WPoly6Laplacian(delta) / particle_j.density();
-					//**  ---------------surface tension computation-----------------**
-
-				}
-			}
-		}
-
-		f_pressure *= -.0051*PARTICLE_MASS;
-		f_viscosity *= mu * PARTICLE_MASS;
-		colorFieldNormal *= PARTICLE_MASS;
-		colorFieldLaplacian *= PARTICLE_MASS;
-
-
-		*/
-
-
+		const float H = 0.03;
 
 		// Collision force
 		for (int k = 0; k < walls.size(); k++) {
@@ -260,12 +170,6 @@ vector<Vector3f> BoxSystem::evalF(vector<Vector3f> state)
 		Vector3f totalForce = F_grav + F_vic + F_breeze + F_pressure + F_wallCollision; //+ F_spring;
 		Vector3f Pos_def = vel;
 		Vector3f Vel_def = totalForce / part_mass;
-
-		if (i == 0 || i == columns - 1) {
-			// fixed point
-			//Pos_def = Vector3f(0.0f, 0.0f, 0.0f);
-			Vel_def = Vector3f(0.0f, 0.0f, 0.0f);
-		}
 
 		f.push_back(Pos_def);
 		f.push_back(Vel_def);
@@ -302,7 +206,7 @@ void BoxSystem::draw()
 
 	
 	vector<Vector3f> state = getState();
-	if (count_wire == 0 || count_wire == 2 || count_wire == 3 || count_wire == 4) {
+	if (count_wire == 0 ) { // || count_wire == 2 || count_wire == 3 || count_wire == 4) {
 		for (int i = 0; i < state.size() / 2; i++) {
 			Vector3f pos = state[i * 2];
 			glPushMatrix();
@@ -312,7 +216,7 @@ void BoxSystem::draw()
 
 		}
 	}
-
+	/*
 	if (count_wire == 1 || count_wire == 2 || count_wire == 4 || count_wire == 5) {
 
 		for (unsigned int i = 0; i < springs.size(); i++) {
@@ -356,6 +260,7 @@ void BoxSystem::draw()
 
 		}
 	}
+	*/
 }
 
 int BoxSystem::index(int cur_row, int cur_col, int cur_lyr, int tot_row, int tot_col, int tot_lyr) {

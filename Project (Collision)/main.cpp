@@ -12,12 +12,8 @@
 #include <vecmath.h>
 #include "camera.h"
 
-///TODO: include more headers if necessary'
 
 #include "timeStepper.hpp"
-#include "simpleSystem.h"
-#include "pendulumSystem.h"
-#include "clothSystem.h"
 #include "BoxSystem.h"
 
 using namespace std;
@@ -26,28 +22,17 @@ using namespace std;
 namespace
 {
 
-	bool isCloth_ON = false;
-
-	
 	ParticleSystem *displayedSystem;
 	TimeStepper* timeStepperRK4;
 	TimeStepper* timeStepperEuler;
 	float timeStep;
 
-	SimpleSystem* simpleSystem = new SimpleSystem();
-	PendulumSystem* pendulumSystem = new PendulumSystem(4);
-	ClothSystem* clothSystem8x8 = new ClothSystem(8, 8, 0.2);
-	ClothSystem* clothSystem15x15 = new ClothSystem(15, 15, 0.08);
 	BoxSystem* boxSystem = new BoxSystem(5, 5, 5, 10, 0.08);
 
-	// initialize your particle systems
-	///TODO: read argv here. set timestepper , step size etc
 	void initSystem(int argc, char * argv[])
 	{
 		srand(time(NULL));
-
 		char * integrator = argv[1];
-
 		timeStepperRK4 = new RK4();
 		timeStepperEuler = new ForwardEuler();
 
@@ -60,8 +45,6 @@ namespace
 		}
 		displayedSystem = boxSystem;
 	}
-
-
 
 
 	void stepSystem()
@@ -96,9 +79,6 @@ namespace
 	}
 
 
-	//-------------------------------------------------------------------
-
-
 	// This is the camera
 	Camera camera;
 
@@ -125,33 +105,7 @@ namespace
 		case 27: // Escape key
 			exit(0);
 			break;
-		/*
 		case '1':
-		{
-			displayedSystem = simpleSystem;		// press 1 -> Simple System
-			break;
-		}
-		case '2':
-		{
-			displayedSystem = pendulumSystem;	// press 2 -> Pendulum System
-			break;
-		}
-		case '3':
-		{
-			displayedSystem = clothSystem8x8;	// press 3 -> Cloth System 8x8
-			break;
-		}
-		case '4':
-		{
-			displayedSystem = clothSystem15x15;	// press 4 -> Cloth System 20x20
-			break;
-		}
-		case '5':
-		{
-			displayedSystem = multipleParticleSystem10x20x30;	// press 4 -> Cloth System 20x20
-			break;
-		}*/
-		case '6':
 		{
 			displayedSystem = boxSystem;	// press 4 -> Cloth System 20x20
 			break;
@@ -163,19 +117,15 @@ namespace
 		}
 		case 'b':
 		{
-			clothSystem8x8->toggleBreeze();
-			clothSystem15x15->toggleBreeze();
 			break;
 		}
 		case 'w': {
-			pendulumSystem->toggleWire();
-			clothSystem8x8->toggleWire();
-			clothSystem15x15->toggleWire();
+			boxSystem->toggleWire();
 			break;
 		}
 		case 'r':
 		{
-			displayedSystem = simpleSystem;
+			displayedSystem = boxSystem;
 			Matrix4f eye = Matrix4f::identity();
 			camera.SetRotation(eye);
 			camera.SetCenter(Vector3f::ZERO);
@@ -203,22 +153,18 @@ namespace
 		{
 		case 101:
 			//cout << "up arrow" << endl;
-			clothSystem15x15->setZTrans(1);
 			break;
 
 		case 103:
 			//cout << "down arrow" << endl;
-			clothSystem15x15->setZTrans(-1);
 			break;
 
 		case 100:
 			//cout << "left arrow" << endl;
-			clothSystem15x15->setXTrans(-1);
 			break;
 
 		case 102:
 			//cout << "right arrow" << endl;
-			clothSystem15x15->setXTrans(1);
 			break;
 		}
 		

@@ -26,7 +26,7 @@ public:
 	void setBoxPos(Vector3f BoxPos) {}
 	void setBoxRot(Vector3f BoxRot) {}
 
-	void toggleWire() { count_wire = (count_wire < 6) ? count_wire + 1 : 0; }
+	void toggleWire() { count_wire = 0; }
 	void toggleBoxFrame() { count_box = (count_box < 3)? count_box + 1 : 0; }
 	
 	int index(int cur_row, int cur_col, int cur_lyr, int tot_row, int tot_col, int tot_lyr);

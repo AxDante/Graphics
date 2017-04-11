@@ -79,11 +79,8 @@
   <ItemGroup>
     <ClCompile Include="BoxSystem.cpp" />
     <ClCompile Include="camera.cpp" />
-    <ClCompile Include="ClothSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="particleSystem.cpp" />
-    <ClCompile Include="pendulumSystem.cpp" />
-    <ClCompile Include="simpleSystem.cpp" />
     <ClCompile Include="TimeStepper.cpp" />
     <ClCompile Include="vecmath\src\Matrix2f.cpp" />
     <ClCompile Include="vecmath\src\Matrix3f.cpp" />
@@ -97,10 +94,7 @@
   <ItemGroup>
     <ClInclude Include="BoxSystem.h" />
     <ClInclude Include="camera.h" />
-    <ClInclude Include="ClothSystem.h" />
     <ClInclude Include="particleSystem.h" />
-    <ClInclude Include="pendulumSystem.h" />
-    <ClInclude Include="simpleSystem.h" />
     <ClInclude Include="TimeStepper.hpp" />
     <ClInclude Include="vecmath\include\Matrix2f.h" />
     <ClInclude Include="vecmath\include\Matrix3f.h" />
