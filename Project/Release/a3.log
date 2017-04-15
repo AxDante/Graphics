@@ -1,2 +1,14 @@
-﻿  a3.vcxproj -> C:\Users\IceFox\Documents\Graphics\Project\Release\a3.exe
-  a3.vcxproj -> C:\Users\IceFox\Documents\Graphics\Project\Release\a3.pdb (Full PDB)
+﻿  main.cpp
+main.cpp(30): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+main.cpp(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(44): warning C4305: '=': truncation from 'double' to 'float'
+main.cpp(67): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
+  RK4.lib(RK4.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+  Generating code
+  Finished generating code
+RK4.lib(RK4.obj) : warning LNK4099: PDB 'RK4.pdb' was not found with 'RK4.lib(RK4.obj)' or at 'D:\Documents\Google Drive\Bouncing Graphics\Work Folder\Graphics\Project\Release\RK4.pdb'; linking object as if no debug info
+  a3.vcxproj -> D:\Documents\Google Drive\Bouncing Graphics\Work Folder\Graphics\Project\Release\a3.exe
+  a3.vcxproj -> D:\Documents\Google Drive\Bouncing Graphics\Work Folder\Graphics\Project\Release\a3.pdb (Full PDB)
