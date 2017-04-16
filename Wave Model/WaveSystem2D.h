@@ -42,9 +42,9 @@ public:
 	//vector< Vector3f > vibrationDir;
 	//vector< float > vibrationValue;
 	vector< float > energyStored;
-	vector< float > phaseStored;
-	vector< float > magnitudeStored;
-	vector< int > spreadCounter;
+	vector< vector< float >  > phaseStored;
+	vector< vector< float > > magnitudeStored;
+	vector< vector< int > > spreadCounter;
 	vector< int > center;
 	int baseSpreadSpeed;
 

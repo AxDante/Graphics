@@ -43,7 +43,8 @@ WaveSystem2D::WaveSystem2D(int row, int col, float mass, float step)
 	const float r_struct = 0.7f;				// structural spring rest length
 	const float r_init = 1.00f * r_struct;		// initial rest length
 
-	center.push_back((int) (row+1) * col / 2 );
+	center.push_back((int) (row + 1) * col / 2 + col / 4);
+	center.push_back((int) (row + 1) * col / 2 - col / 4);
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
@@ -60,17 +61,8 @@ WaveSystem2D::WaveSystem2D(int row, int col, float mass, float step)
 
 			//energyStored.push_back(1.0f - abs(i - 0.5f*rows) / 20.0 - abs(j - 0.5f*columns) / 20.0);
 
-			
-			if (i*columns + j == center[0]) {
-				magnitudeStored.push_back(1.00f);
-				phaseStored.push_back(0.001f);
-			}
-			else {
-				magnitudeStored.push_back(0.0f);
-				phaseStored.push_back(0.0f);
-			}
 			energyStored.push_back(0.0f);
-			spreadCounter.push_back(baseSpreadSpeed);
+			
 
 			if (i < columns) {
 				forcedPos.push_back(Vector3f(0, 0, 0));
@@ -81,10 +73,38 @@ WaveSystem2D::WaveSystem2D(int row, int col, float mass, float step)
 				forcedVel.push_back(Vector3f(-100, -100, -100));
 			}
 
-
 		}
 	}
-
+	
+	for (int source = 0; source < 2; source++) {
+		vector<float > phasePush;
+		vector<float > magnitudePush;
+		vector<int > spreadCountPush;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				if (i*columns + j == center[source]) {
+					magnitudePush.push_back(1.00f);
+					phasePush.push_back(0.001f);
+					spreadCountPush.push_back(baseSpreadSpeed);
+					//printf("center: %d \n", center[source]);
+				}
+				else {
+					magnitudePush.push_back(0.0f);
+					phasePush.push_back(0.0f);
+					spreadCountPush.push_back(baseSpreadSpeed);
+				}
+			}
+		}
+		phaseStored.push_back(phasePush);
+		magnitudeStored.push_back(magnitudePush);
+		
+		spreadCounter.push_back(spreadCountPush);
+	}
+	for (int i = 0; i < rows*columns; i++) {
+		//printf("%.1f", magnitudeStored[0][i]);
+	}
+	printf("x: %d \n", magnitudeStored[0][1285]);
+	printf("x: %d \n", magnitudeStored[1][1265]);
 	const float k_spring_struct = 50;			// spring 
 	const float k_spring_shear = 50;			// spring stiffness
 	const float k_spring_flex = 50;				// spring stiffness
@@ -141,37 +161,40 @@ void WaveSystem2D::takeTimeStep()
 		//nState[2 * i].y() = energy[i] * sin(100* sysCounter);
 
 		//if (i == 220) energyStored[i] = sin(1000 * sysCounter);
-
-		
-
-		for (int j = 0; j < this->springs.size(); j++) {
-
-			// The particle is at center
-			if (this->springs[j][0] == i) {
-				for (int k = 1; k < 9; k++) {
-					if (phaseStored[springs[j][k]] < phaseStored[springs[j][0]]) {
-						if (springs[j][k] != -1) {
-							if (spreadCounter[i] == 0) {
-								//if (magnitudeStored[springs[j][0]] != 0) 
-								float dis = (nState[center[0] * 2] - nState[springs[j][k] * 2]).abs();
-								magnitudeStored[springs[j][k]] = magnitudeStored[center[0]] * exp(-dis*0.1f);
-								//if (phaseStored[springs[j][0]] != 0) {
-										//printf("center %d num %.5f ", center[0],(nState[center[0]*2] - nState[i*2]).abs());
-								phaseStored[springs[j][k]] = dis; // phaseStored[springs[j][0]] +;
-								spreadCounter[springs[j][k]] = 40;
-								//}
-								spreadCounter[i] = 20;
+		for (int source = 0; source < 2; source++) {
+			for (int j = 0; j < this->springs.size(); j++) {
+				// The particle is at center
+				if (this->springs[j][0] == i) {
+					for (int k = 1; k < 9; k++) {
+						int thisParticle = springs[j][0];
+						int nextParticle = springs[j][k];
+						if (nextParticle != -1) {
+							if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
+								if (spreadCounter[source][i] == 0) {
+									//printf("%d", source);
+									float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
+									magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
+									phaseStored[source][nextParticle] = dis;
+									spreadCounter[source][i] = 20;
+								}
+								else {
+									spreadCounter[source][i] -= 1;
+								}
 							}
-							else {
-								spreadCounter[i] -= 1;
-							}
+
 						}
 					}
 				}
 			}
 		}
 
-		nState[2 * i].y() = magnitudeStored[i] * sin(500 * sysCounter -  phaseStored[i]);
+		float totY = 0;
+		for (int source = 0; source < 2; source++) {
+			totY += magnitudeStored[source][i] * sin(500 * sysCounter - phaseStored[source][i]);
+			//totY = magnitudeStored[0][i] * sin(500 * sysCounter - phaseStored[0][i]);
+			//totY2 = magnitudeStored[1][i] * sin(500 * sysCounter - phaseStored[1][i]);
+		}
+		nState[2 * i].y() = totY;// + totY2;
 
 		f.push_back(nState[2 * i]);
 		f.push_back(nState[2 * i + 1]);

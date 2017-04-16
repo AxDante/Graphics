@@ -38,7 +38,7 @@ namespace
 	float timeStep;
 
 
-	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(50, 50, 0.02, 0.0001);
+	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(50, 100, 0.02, 0.0001);
 
 	void initSystem(int argc, char * argv[])
 	{

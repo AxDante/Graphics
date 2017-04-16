@@ -1,19 +1,10 @@
-﻿  WaveSystem2D.cpp
-WaveSystem2D.cpp(18): warning C4305: '=': truncation from 'double' to 'float'
-WaveSystem2D.cpp(51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystem2D.cpp(57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystem2D.cpp(91): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-WaveSystem2D.cpp(91): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-WaveSystem2D.cpp(134): warning C4305: 'initializing': truncation from 'double' to 'float'
-WaveSystem2D.cpp(138): warning C4018: '<': signed/unsigned mismatch
-WaveSystem2D.cpp(147): warning C4018: '<': signed/unsigned mismatch
-WaveSystem2D.cpp(194): warning C4018: '<': signed/unsigned mismatch
-WaveSystem2D.cpp(197): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-WaveSystem2D.cpp(197): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-WaveSystem2D.cpp(216): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-WaveSystem2D.cpp(240): warning C4018: '<': signed/unsigned mismatch
-WaveSystem2D.cpp(247): warning C4018: '<': signed/unsigned mismatch
-WaveSystem2D.cpp(248): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  main.cpp
+c:\users\icefox\dropbox\graphics\proj - copy (5) - copy\clothSystem.h(29): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\icefox\dropbox\graphics\proj - copy (5) - copy\clothSystem.h(30): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+main.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(45): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+main.cpp(54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(57): warning C4305: '=': truncation from 'double' to 'float'
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
   RK4.lib(RK4.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
