@@ -76,7 +76,7 @@ WaveSystemDielectric::WaveSystemDielectric(int row, int col, float mass, float s
 		}
 	}
 	
-	for (int source = 0; source < 1; source++) {
+	for (int source = 0; source < center.size(); source++) {
 		vector<float > phasePush;
 		vector<float > magnitudePush;
 		vector<int > spreadCountPush;
@@ -154,28 +154,28 @@ void WaveSystemDielectric::takeTimeStep()
 	vector<Vector3f > nState = getState();
 
 	for (int i = 0; i < nState.size() / 2; i++) {
+		for (int source = 0; source < center.size(); source++) {
+			if (phaseStored[source][i] != 0) {
+				for (int j = 0; j < this->springs.size(); j++) {
+					if (this->springs[j][0] == i) {
+						for (int k = 1; k < 9; k++) {
+							int thisParticle = springs[j][0];
+							int nextParticle = springs[j][k];
+							if (nextParticle != -1) {
+								if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
+									if (spreadCounter[source][i] == 0) {
+										//printf("%d", source);
+										float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
+										magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
+										phaseStored[source][nextParticle] = dis;
+										spreadCounter[source][i] = 20;
+									}
+									else {
+										spreadCounter[source][i] -= 1;
+									}
+								}
 
-		for (int source = 0; source < 1; source++) {
-			for (int j = 0; j < this->springs.size(); j++) {
-				// The particle is at center
-				if (this->springs[j][0] == i) {
-					for (int k = 1; k < 9; k++) {
-						int thisParticle = springs[j][0];
-						int nextParticle = springs[j][k];
-						if (nextParticle != -1) {
-							if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
-								if (spreadCounter[source][i] == 0) {
-									//printf("%d", source);
-									float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
-									magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
-									phaseStored[source][nextParticle] = dis;
-									spreadCounter[source][i] = 20;
-								}
-								else {
-									spreadCounter[source][i] -= 1;
-								}
 							}
-
 						}
 					}
 				}
@@ -183,7 +183,7 @@ void WaveSystemDielectric::takeTimeStep()
 		}
 
 		float totY = 0;
-		for (int source = 0; source < 1; source++) {
+		for (int source = 0; source < center.size(); source++) {
 			totY += magnitudeStored[source][i] * sin(500 * sysCounter - phaseStored[source][i]);
 		}
 		nState[2 * i].y() = totY;// + totY2;
@@ -193,9 +193,7 @@ void WaveSystemDielectric::takeTimeStep()
 	}
 
 	sysCounter += timeStep;
-	printf("Time %.4f\n", sysCounter);
 	this->setState(f);
-
 
 }
 
@@ -209,7 +207,7 @@ void WaveSystemDielectric::draw()
 		for (int i = 0; i < state.size() / 2; i++) {
 			//printf("%.2f", energy[i]);				
 			Vector3f pos = state[i * 2];
-			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5*pos[1]+0.5), 0.5f, 1.0f };
+			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5 * pos[1] / maxCenter + 0.5), 0.5f, 1.0f };
 
 			//printf("size %.3f", energy[i]);
 			//printf("%.2f %.2f\n", particleColor[1], energy[i]);

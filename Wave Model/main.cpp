@@ -24,6 +24,7 @@
 #include "WaveSystemWall.h"
 #include "WaveSystemDielectric.h"
 #include "WaveSystemParallel.h"
+#include "WaveSystemPoint.h"
 
 using namespace std;
 
@@ -41,10 +42,11 @@ namespace
 	float timeStep;
 
 
-	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(40, 100, 0.02, 0.0001);
-	WaveSystemWall* waveSystemWall = new WaveSystemWall(50, 50, 0.02, 0.0001);
-	WaveSystemDielectric* waveSystemDielectric = new WaveSystemDielectric(40, 80, 0.02, 0.00001);
-	WaveSystemParallel* waveSystemParallel = new WaveSystemParallel(40, 80, 0.02, 0.00001);
+	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(40, 100, 0.02, 0.0002);
+	WaveSystemWall* waveSystemWall = new WaveSystemWall(30, 50, 0.02, 0.0002);
+	WaveSystemDielectric* waveSystemDielectric = new WaveSystemDielectric(40, 80, 0.02, 0.0002);
+	WaveSystemParallel* waveSystemParallel = new WaveSystemParallel(40, 80, 0.02, 0.0002);
+	WaveSystemPoint* waveSystemPoint = new WaveSystemPoint(40, 80, 0.02, 0.0002);
 
 	void initSystem(int argc, char * argv[])
 	{
@@ -113,6 +115,12 @@ namespace
 		case 27: // Escape key
 			exit(0);
 			break;
+
+		case '4':
+		{
+			displayedSystem = waveSystemPoint;
+			break;
+		}
 		case '5':
 		{
 			displayedSystem = waveSystemParallel;

@@ -156,32 +156,29 @@ void WaveSystem2D::takeTimeStep()
 	vector<Vector3f > nState = getState();
 
 	for (int i = 0; i < nState.size() / 2; i++) {
-
-
-		//nState[2 * i].y() = energy[i] * sin(100* sysCounter);
-
-		//if (i == 220) energyStored[i] = sin(1000 * sysCounter);
 		for (int source = 0; source < 2; source++) {
-			for (int j = 0; j < this->springs.size(); j++) {
-				// The particle is at center
-				if (this->springs[j][0] == i) {
-					for (int k = 1; k < 9; k++) {
-						int thisParticle = springs[j][0];
-						int nextParticle = springs[j][k];
-						if (nextParticle != -1) {
-							if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
-								if (spreadCounter[source][i] == 0) {
-									//printf("%d", source);
-									float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
-									magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
-									phaseStored[source][nextParticle] = dis;
-									spreadCounter[source][i] = 20;
+			if (phaseStored[source][i] != 0) {
+				for (int j = 0; j < this->springs.size(); j++) {
+					// The particle is at center
+					if (this->springs[j][0] == i) {
+						for (int k = 1; k < 9; k++) {
+							int thisParticle = springs[j][0];
+							int nextParticle = springs[j][k];
+							if (nextParticle != -1) {
+								if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
+									if (spreadCounter[source][i] == 0) {
+										//printf("%d", source);
+										float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
+										magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
+										phaseStored[source][nextParticle] = dis;
+										spreadCounter[source][i] = 20;
+									}
+									else {
+										spreadCounter[source][i] -= 1;
+									}
 								}
-								else {
-									spreadCounter[source][i] -= 1;
-								}
-							}
 
+							}
 						}
 					}
 				}
@@ -191,20 +188,14 @@ void WaveSystem2D::takeTimeStep()
 		float totY = 0;
 		for (int source = 0; source < 2; source++) {
 			totY += magnitudeStored[source][i] * sin(500 * sysCounter - phaseStored[source][i]);
-			//totY = magnitudeStored[0][i] * sin(500 * sysCounter - phaseStored[0][i]);
-			//totY2 = magnitudeStored[1][i] * sin(500 * sysCounter - phaseStored[1][i]);
 		}
 		nState[2 * i].y() = totY;// + totY2;
 
 		f.push_back(nState[2 * i]);
 		f.push_back(nState[2 * i + 1]);
 	}
-
 	sysCounter += timeStep;
-	printf("Time %.4f\n", sysCounter);
 	this->setState(f);
-
-
 }
 
 void WaveSystem2D::draw()

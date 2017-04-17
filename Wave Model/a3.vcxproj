@@ -98,6 +98,7 @@
     <ClCompile Include="WaveSystem2D.cpp" />
     <ClCompile Include="WaveSystemDielectric.cpp" />
     <ClCompile Include="WaveSystemParallel.cpp" />
+    <ClCompile Include="WaveSystemPoint.cpp" />
     <ClCompile Include="WaveSystemWall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +123,7 @@
     <ClInclude Include="WaveSystem2D.h" />
     <ClInclude Include="WaveSystemDielectric.h" />
     <ClInclude Include="WaveSystemParallel.h" />
+    <ClInclude Include="WaveSystemPoint.h" />
     <ClInclude Include="WaveSystemWall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

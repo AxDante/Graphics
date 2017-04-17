@@ -8,10 +8,6 @@
 #include "WaveSystemWall.h"
 #include "Wall.h"
 
-//std::clock_t start = std::clock();
-//double duration;
-
-
 WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 {
 	part_mass = mass;
@@ -22,7 +18,7 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 
 	sysCounter = 0.0f;
 	timeStep = step;
-	baseSpreadSpeed = 20;
+	baseSpreadSpeed = 5;
 	vector<Vector3f> startPosVel(numParticles * 2);
 	//vector<Vector4f> springs;
 	vector<Vector3f> m_face; 
@@ -33,7 +29,6 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 	vector< Vector3f > forcedVel;
 	vector< Vector3f > statePos;
 	vector< Vector3f > stateVel;
-
 	//vector< Vector3f > vibrationDir;
 	//vector< float > vibrationValue;
 	//vector< float > energyStored;
@@ -43,8 +38,11 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 	const float r_struct = 0.7f;				// structural spring rest length
 	const float r_init = 1.00f * r_struct;		// initial rest length
 
-	center.push_back((int) (row + 1) * col / 2 + col / 4);
-	//center.push_back((int) (row + 1) * col / 2 - col / 4);
+	//center.push_back((int)(row + 1) * (col) / 2 + col / 4);
+	//center.push_back((int)(row + 1) * (col) / 2 + col / 8);
+	//center.push_back((int)(row + 1) * (col) / 2 - col / 4);
+	//center.push_back((int)(row + 1) * (col) / 2 - col / 8);
+	center.push_back((int)(row + 1) * (col) / 2 );
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
@@ -76,34 +74,32 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 		}
 	}
 	
-	for (int source = 0; source < 1; source++) {
+	for (int source = 0; source < center.size(); source++) {
 		vector<float > phasePush;
 		vector<float > magnitudePush;
 		vector<int > spreadCountPush;
+		vector<int > sourceCheckPush;
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				if (i*columns + j == center[source]) {
+				if (i * columns + j == center[source]) {
 					magnitudePush.push_back(1.00f);
 					phasePush.push_back(0.001f);
-					spreadCountPush.push_back(baseSpreadSpeed);
-					//printf("center: %d \n", center[source]);
 				}
 				else {
 					magnitudePush.push_back(0.0f);
 					phasePush.push_back(0.0f);
-					spreadCountPush.push_back(baseSpreadSpeed);
 				}
+				spreadCountPush.push_back(baseSpreadSpeed);
+				sourceCheckPush.push_back(0);
 			}
 		}
 		phaseStored.push_back(phasePush);
 		magnitudeStored.push_back(magnitudePush);
-		
+		sourceChecked.push_back(sourceCheckPush);
 		spreadCounter.push_back(spreadCountPush);
 	}
-	for (int i = 0; i < rows*columns; i++) {
-		//printf("%.1f", magnitudeStored[0][i]);
-	}
-	const float k_spring_struct = 50;			// spring 
+
+	const float k_spring_struct = 50;			//spring 
 	const float k_spring_shear = 50;			// spring stiffness
 	const float k_spring_flex = 50;				// spring stiffness
 	const float r_shear = sqrt(2) * r_struct;	// shear spring rest length
@@ -154,28 +150,68 @@ void WaveSystemWall::takeTimeStep()
 	vector<Vector3f > nState = getState();
 
 	for (int i = 0; i < nState.size() / 2; i++) {
-
-		for (int source = 0; source < 1; source++) {
-			for (int j = 0; j < this->springs.size(); j++) {
-				// The particle is at center
-				if (this->springs[j][0] == i) {
-					for (int k = 1; k < 9; k++) {
-						int thisParticle = springs[j][0];
-						int nextParticle = springs[j][k];
-						if (nextParticle != -1) {
-							if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
-								if (spreadCounter[source][i] == 0) {
-									//printf("%d", source);
-									float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
-									magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
-									phaseStored[source][nextParticle] = dis;
-									spreadCounter[source][i] = 20;
-								}
-								else {
-									spreadCounter[source][i] -= 1;
+		for (int source = 0; source < center.size(); source++) {
+			if (phaseStored[source][i] != 0 && sourceChecked[source][i] == 0) {
+				for (int j = 0; j < this->springs.size(); j++) {
+					if (this->springs[j][0] == i) {
+						if (spreadCounter[source][i] == 0) {
+							bool newSource = false;
+							bool isSource = false;
+							int sequence[9] = { 0, 2, 4, 5, 7, 1, 3, 6, 8 };
+							for (int seq = 1; seq < 9; seq++) {
+								int k = sequence[seq];
+								if (springs[j][k] == -1) newSource = true;
+								for (int sc = 0; sc < center.size(); sc++) {
+									if (center[sc] == i) isSource = true;
 								}
 							}
-
+							if (!newSource || isSource){
+								for (int seq = 1; seq < 9; seq++) {
+									int k = sequence[seq];
+									int thisParticle = springs[j][0];
+									int nextParticle = springs[j][k];
+									if (nextParticle != -1) {
+										if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
+											float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
+											magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
+											phaseStored[source][nextParticle] = dis;
+											spreadCounter[source][i] = baseSpreadSpeed;
+											sourceChecked[source][i] = 1;
+										}
+									}
+								}
+							}
+							else {
+								if (center.size() < maxCenter) {
+									printf("newSourceGenerated!");
+									center.push_back(i);
+									vector<float > phasePush;
+									vector<float > magnitudePush;
+									vector<int > spreadCountPush;
+									vector<int > sourceCheckPush;
+									for (int r = 0; r < rows; r++) {
+										for (int c = 0; c < columns; c++) {
+											if (r * columns + c == i) {
+												magnitudePush.push_back(1.0f); // magnitudeStored[source][i]);
+												phasePush.push_back(phaseStored[source][i]);
+											}
+											else {
+												magnitudePush.push_back(0.0f);
+												phasePush.push_back(0.0f);
+											}
+											spreadCountPush.push_back(baseSpreadSpeed);
+											sourceCheckPush.push_back(0);
+										}
+									}
+									phaseStored.push_back(phasePush);
+									magnitudeStored.push_back(magnitudePush);
+									sourceChecked.push_back(sourceCheckPush);
+									spreadCounter.push_back(spreadCountPush);
+								}
+							}
+						}
+						else {
+							spreadCounter[source][i] -= 1;
 						}
 					}
 				}
@@ -183,7 +219,7 @@ void WaveSystemWall::takeTimeStep()
 		}
 
 		float totY = 0;
-		for (int source = 0; source < 1; source++) {
+		for (int source = 0; source < center.size(); source++) {
 			totY += magnitudeStored[source][i] * sin(500 * sysCounter - phaseStored[source][i]);
 		}
 		nState[2 * i].y() = totY;// + totY2;
@@ -193,10 +229,7 @@ void WaveSystemWall::takeTimeStep()
 	}
 
 	sysCounter += timeStep;
-	printf("Time %.4f\n", sysCounter);
 	this->setState(f);
-
-
 }
 
 void WaveSystemWall::draw()
@@ -209,28 +242,15 @@ void WaveSystemWall::draw()
 		for (int i = 0; i < state.size() / 2; i++) {
 			//printf("%.2f", energy[i]);				
 			Vector3f pos = state[i * 2];
-			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5*pos[1]+0.5), 0.5f, 1.0f };
+			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5 * pos[1] / maxCenter + 0.5), 0.5f, 1.0f };
+			 
 
-			//printf("size %.3f", energy[i]);
-			//printf("%.2f %.2f\n", particleColor[1], energy[i]);
+			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, particleColor);
+			glPushMatrix();
+			glTranslatef(pos[0], pos[1], pos[2]);
+			glutSolidSphere(part_size + 0.2*energy[i], 10.0f, 10.0f);
+			glPopMatrix();
 
-			/*if (i < columns){
-				Vector3f pos = state[i * 2];
-				glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, particleColor);
-				glPushMatrix();
-				glTranslatef(pos[0], pos[1], pos[2]);
-				glutSolidSphere(part_size + energy[i], 10.0f, 10.0f);
-				glPopMatrix();
-				glPopAttrib();
-			}
-			else {*/
-				glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, particleColor);
-
-				glPushMatrix();
-				glTranslatef(pos[0], pos[1], pos[2]);
-				glutSolidSphere(part_size + 0.2*energy[i], 10.0f, 10.0f);
-				glPopMatrix();
-			//}
 		}
 	//}
 

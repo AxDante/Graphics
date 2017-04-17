@@ -93,6 +93,9 @@
     <ClCompile Include="WaveSystemParallel.cpp">
       <Filter>Resource Files\Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="WaveSystemPoint.cpp">
+      <Filter>Resource Files\Source Files\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="WaveSystemParallel.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveSystemPoint.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>

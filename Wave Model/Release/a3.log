@@ -1,22 +1,24 @@
-﻿  WaveSystemParallel.cpp
-WaveSystemParallel.cpp(14): warning C4305: '=': truncation from 'double' to 'float'
-WaveSystemParallel.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystemParallel.cpp(58): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystemParallel.cpp(79): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-WaveSystemParallel.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-WaveSystemParallel.cpp(152): warning C4305: 'initializing': truncation from 'double' to 'float'
-WaveSystemParallel.cpp(156): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(158): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(159): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(186): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(209): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(212): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-WaveSystemParallel.cpp(212): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-WaveSystemParallel.cpp(231): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-WaveSystemParallel.cpp(255): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(262): warning C4018: '<': signed/unsigned mismatch
-WaveSystemParallel.cpp(263): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  WaveSystemWall.cpp
+WaveSystemWall.cpp(14): warning C4305: '=': truncation from 'double' to 'float'
+WaveSystemWall.cpp(50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(77): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(105): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(105): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystemWall.cpp(148): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystemWall.cpp(152): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(153): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(155): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(164): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(185): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(222): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(242): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(245): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystemWall.cpp(245): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystemWall.cpp(251): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystemWall.cpp(275): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(282): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(283): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
   RK4.lib(RK4.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification

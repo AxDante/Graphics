@@ -46,7 +46,9 @@ public:
 	vector< vector< float > > magnitudeStored;
 	vector< vector< int > > spreadCounter;
 	vector< int > center;
+
 	int baseSpreadSpeed;
+	int maxCenter = 2;
 
 protected:
 

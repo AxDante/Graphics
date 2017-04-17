@@ -31,7 +31,7 @@ public:
 
 	void toggleBreeze() { switch_breeze = !switch_breeze; }
 	void toggleWire() { count_wire = (count_wire < 6) ? count_wire + 1 : 0; }
-	void toggleBoxFrame() { count_box = (count_box < 3)? count_box + 1 : 0; }
+	void toggleBoxFrame() { count_box = (count_box < 3) ? count_box + 1 : 0; }
 	void takeStep(float stepSize);
 
 	int index(int cur_row, int cur_col, int tot_row, int tot_col);
@@ -45,8 +45,13 @@ public:
 	vector< vector< float >  > phaseStored;
 	vector< vector< float > > magnitudeStored;
 	vector< vector< int > > spreadCounter;
+	vector < vector< int > > sourceChecked;
 	vector< int > center;
+	
+
+
 	int baseSpreadSpeed;
+	int maxCenter = 2;
 
 protected:
 
@@ -72,7 +77,6 @@ protected:
 
 	float timeStep;
 	float sysCounter;
-
 private:
 
 	vector< Vector3f > m_face;
