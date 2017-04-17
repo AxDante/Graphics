@@ -1,24 +1,40 @@
 ﻿  WaveSystemWall.cpp
+c:\users\icefox\documents\graphics\wave model\WaveSystemWall.h(58): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\documents\graphics\wave model\WaveSystemWall.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
 WaveSystemWall.cpp(14): warning C4305: '=': truncation from 'double' to 'float'
-WaveSystemWall.cpp(50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystemWall.cpp(56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystemWall.cpp(77): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(105): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-WaveSystemWall.cpp(105): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-WaveSystemWall.cpp(148): warning C4305: 'initializing': truncation from 'double' to 'float'
-WaveSystemWall.cpp(152): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(153): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(59): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(80): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(108): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(108): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystemWall.cpp(151): warning C4305: 'initializing': truncation from 'double' to 'float'
 WaveSystemWall.cpp(155): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(164): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(185): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(222): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(242): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(245): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-WaveSystemWall.cpp(245): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-WaveSystemWall.cpp(251): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-WaveSystemWall.cpp(275): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(282): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(283): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWall.cpp(156): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(158): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(175): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(201): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(237): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(257): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(260): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystemWall.cpp(260): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystemWall.cpp(266): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystemWall.cpp(290): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(297): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWall.cpp(298): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+c:\users\icefox\documents\graphics\wave model\clothSystem.h(29): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\icefox\documents\graphics\wave model\clothSystem.h(30): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\icefox\documents\graphics\wave model\WaveSystemWall.h(58): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\documents\graphics\wave model\WaveSystemWall.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
+main.cpp(45): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(46): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(47): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(48): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(49): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(53): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+main.cpp(62): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(65): warning C4305: '=': truncation from 'double' to 'float'
+  Generating Code...
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
   RK4.lib(RK4.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification

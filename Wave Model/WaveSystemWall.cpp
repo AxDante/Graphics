@@ -33,6 +33,9 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 	//vector< float > vibrationValue;
 	//vector< float > energyStored;
 
+	switchBoarderReflection = false;
+
+
 	m_vVecState.empty();
 
 	const float r_struct = 0.7f;				// structural spring rest length
@@ -42,7 +45,7 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 	//center.push_back((int)(row + 1) * (col) / 2 + col / 8);
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 4);
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 8);
-	center.push_back((int)(row + 1) * (col) / 2 );
+	center.push_back((int)(row) * (col) / 2 + col / 4 +  10 * row);
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
@@ -158,23 +161,36 @@ void WaveSystemWall::takeTimeStep()
 							bool newSource = false;
 							bool isSource = false;
 							int sequence[9] = { 0, 2, 4, 5, 7, 1, 3, 6, 8 };
-							for (int seq = 1; seq < 9; seq++) {
+							for (int seq = 1; seq < 5; seq++) {
 								int k = sequence[seq];
-								if (springs[j][k] == -1) newSource = true;
+								int thisParticle = springs[j][0];
+								int nextParticle = springs[j][k];
+								float disToThis = (nState[center[source] * 2] - nState[thisParticle * 2]).abs();
+								float magnitudeNew = magnitudeStored[source][center[source]] * exp(-disToThis * waveDecayRate);
+								//printf("%.2f ", magnitudeNew);
+								if (springs[j][k] == -1){ // && magnitudeNew > magnitudeReflectThreshold) {
+									newSource = true;
+									springs[j][k] = -2;  // Prevent multiple calculation on the same obstacle and increase calculation speed
+								}
 								for (int sc = 0; sc < center.size(); sc++) {
-									if (center[sc] == i) isSource = true;
+									if (center[sc] == i) {
+										isSource = true;
+										float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs() + 1;
+										magnitudeStored[source][i] = magnitudeStored[source][center[source]] * exp(-disToNext * waveDecayRate);
+										phaseStored[source][i] = disToNext;
+									}
 								}
 							}
 							if (!newSource || isSource){
-								for (int seq = 1; seq < 9; seq++) {
+								for (int seq = 1; seq < 5; seq++) {
 									int k = sequence[seq];
 									int thisParticle = springs[j][0];
 									int nextParticle = springs[j][k];
 									if (nextParticle != -1) {
 										if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
-											float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
-											magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
-											phaseStored[source][nextParticle] = dis;
+											float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
+											magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-disToNext * waveDecayRate);
+											phaseStored[source][nextParticle] = disToNext;
 											spreadCounter[source][i] = baseSpreadSpeed;
 											sourceChecked[source][i] = 1;
 										}
@@ -183,7 +199,6 @@ void WaveSystemWall::takeTimeStep()
 							}
 							else {
 								if (center.size() < maxCenter) {
-									printf("newSourceGenerated!");
 									center.push_back(i);
 									vector<float > phasePush;
 									vector<float > magnitudePush;
@@ -192,7 +207,7 @@ void WaveSystemWall::takeTimeStep()
 									for (int r = 0; r < rows; r++) {
 										for (int c = 0; c < columns; c++) {
 											if (r * columns + c == i) {
-												magnitudePush.push_back(1.0f); // magnitudeStored[source][i]);
+												magnitudePush.push_back(magnitudeStored[source][i]/4.0f);
 												phasePush.push_back(phaseStored[source][i]);
 											}
 											else {
@@ -242,7 +257,7 @@ void WaveSystemWall::draw()
 		for (int i = 0; i < state.size() / 2; i++) {
 			//printf("%.2f", energy[i]);				
 			Vector3f pos = state[i * 2];
-			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5 * pos[1] / maxCenter + 0.5), 0.5f, 1.0f };
+			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5 * pos[1] / 3 + 0.5), 0.5f, 1.0f };
 			 
 
 			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, particleColor);

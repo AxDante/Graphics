@@ -43,7 +43,7 @@ namespace
 
 
 	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(40, 100, 0.02, 0.0002);
-	WaveSystemWall* waveSystemWall = new WaveSystemWall(30, 50, 0.02, 0.0002);
+	WaveSystemWall* waveSystemWall = new WaveSystemWall(100, 100, 0.02, 0.0002);
 	WaveSystemDielectric* waveSystemDielectric = new WaveSystemDielectric(40, 80, 0.02, 0.0002);
 	WaveSystemParallel* waveSystemParallel = new WaveSystemParallel(40, 80, 0.02, 0.0002);
 	WaveSystemPoint* waveSystemPoint = new WaveSystemPoint(40, 80, 0.02, 0.0002);
@@ -355,7 +355,8 @@ namespace
 
 	void timerFunc(int t)
 	{
-		stepSystem();
+		//stepSystem();
+
 		displayedSystem->takeTimeStep();
 		glutPostRedisplay();
 

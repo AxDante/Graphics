@@ -103,8 +103,6 @@ WaveSystem2D::WaveSystem2D(int row, int col, float mass, float step)
 	for (int i = 0; i < rows*columns; i++) {
 		//printf("%.1f", magnitudeStored[0][i]);
 	}
-	printf("x: %d \n", magnitudeStored[0][1285]);
-	printf("x: %d \n", magnitudeStored[1][1265]);
 	const float k_spring_struct = 50;			// spring 
 	const float k_spring_shear = 50;			// spring stiffness
 	const float k_spring_flex = 50;				// spring stiffness
@@ -167,7 +165,6 @@ void WaveSystem2D::takeTimeStep()
 							if (nextParticle != -1) {
 								if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
 									if (spreadCounter[source][i] == 0) {
-										//printf("%d", source);
 										float dis = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
 										magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-dis*0.1f);
 										phaseStored[source][nextParticle] = dis;
