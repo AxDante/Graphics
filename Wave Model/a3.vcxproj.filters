@@ -84,6 +84,15 @@
     <ClCompile Include="WaveSystem2D.cpp">
       <Filter>Resource Files\Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="WaveSystemWall.cpp">
+      <Filter>Resource Files\Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveSystemDielectric.cpp">
+      <Filter>Resource Files\Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveSystemParallel.cpp">
+      <Filter>Resource Files\Source Files\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -141,6 +150,15 @@
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="WaveSystem2D.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveSystemWall.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveSystemDielectric.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveSystemParallel.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>

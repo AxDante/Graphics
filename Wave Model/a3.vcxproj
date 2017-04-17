@@ -96,6 +96,9 @@
     <ClCompile Include="vecmath\src\Vector4f.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="WaveSystem2D.cpp" />
+    <ClCompile Include="WaveSystemDielectric.cpp" />
+    <ClCompile Include="WaveSystemParallel.cpp" />
+    <ClCompile Include="WaveSystemWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxSpringSystem.h" />
@@ -117,6 +120,9 @@
     <ClInclude Include="vecmath\include\Vector4f.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="WaveSystem2D.h" />
+    <ClInclude Include="WaveSystemDielectric.h" />
+    <ClInclude Include="WaveSystemParallel.h" />
+    <ClInclude Include="WaveSystemWall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

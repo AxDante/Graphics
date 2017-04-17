@@ -21,6 +21,9 @@
 #include "BoxSystem.h"
 #include "BoxSpringSystem.h"
 #include "WaveSystem2D.h"
+#include "WaveSystemWall.h"
+#include "WaveSystemDielectric.h"
+#include "WaveSystemParallel.h"
 
 using namespace std;
 
@@ -38,7 +41,10 @@ namespace
 	float timeStep;
 
 
-	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(50, 100, 0.02, 0.0001);
+	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(40, 100, 0.02, 0.0001);
+	WaveSystemWall* waveSystemWall = new WaveSystemWall(50, 50, 0.02, 0.0001);
+	WaveSystemDielectric* waveSystemDielectric = new WaveSystemDielectric(40, 80, 0.02, 0.00001);
+	WaveSystemParallel* waveSystemParallel = new WaveSystemParallel(40, 80, 0.02, 0.00001);
 
 	void initSystem(int argc, char * argv[])
 	{
@@ -107,9 +113,24 @@ namespace
 		case 27: // Escape key
 			exit(0);
 			break;
+		case '5':
+		{
+			displayedSystem = waveSystemParallel;
+			break;
+		}
+		case '6':
+		{
+			displayedSystem = waveSystemDielectric;	
+			break;
+		}
+		case '7':
+		{
+			displayedSystem = waveSystemWall;
+			break;
+		}
 		case '8':
 		{
-			displayedSystem = waveSystem10x30;	// press 4 -> Cloth System 20x20
+			displayedSystem = waveSystem10x30;
 			break;
 		}
 		case 'e':
@@ -327,7 +348,7 @@ namespace
 	void timerFunc(int t)
 	{
 		stepSystem();
-		waveSystem10x30->takeTimeStep();
+		displayedSystem->takeTimeStep();
 		glutPostRedisplay();
 
 		glutTimerFunc(t, &timerFunc, t);

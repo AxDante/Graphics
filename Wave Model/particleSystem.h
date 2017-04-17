@@ -29,7 +29,7 @@ public:
 	virtual void dragMotion() = 0;
 	virtual void draw() = 0;
 	vector<Vector3f> m_vVecState;
-
+	virtual void takeTimeStep() = 0;
 protected:
 };
 
