@@ -30,9 +30,6 @@
     <ClCompile Include="camera.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TimeStepper.cpp">
-      <Filter>Resource Files\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
@@ -57,28 +54,10 @@
     <ClCompile Include="vecmath\src\Quat4f.cpp">
       <Filter>Resource Files\Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="pendulumSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="particleSystem.cpp">
       <Filter>Resource Files\Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="simpleSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="ClothSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="MultipleParticleSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxSystem.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="Wall.cpp">
-      <Filter>Resource Files\Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxSpringSystem.cpp">
       <Filter>Resource Files\Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="WaveSystem2D.cpp">
@@ -96,12 +75,15 @@
     <ClCompile Include="WaveSystemPoint.cpp">
       <Filter>Resource Files\Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="WaveSystemRefraction.cpp">
+      <Filter>Resource Files\Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveSystemWallDraw.cpp">
+      <Filter>Resource Files\Source Files\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeStepper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vecmath\include\Matrix2f.h">
@@ -128,28 +110,10 @@
     <ClInclude Include="vecmath\include\Vector2f.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="pendulumSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="particleSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="ClothSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="MultipleParticleSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="Wall.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxSpringSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="WaveSystem2D.h">
@@ -165,6 +129,12 @@
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="WaveSystemPoint.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveSystemRefraction.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveSystemWallDraw.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>

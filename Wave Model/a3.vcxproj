@@ -78,16 +78,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BoxSpringSystem.cpp" />
-    <ClCompile Include="BoxSystem.cpp" />
     <ClCompile Include="camera.cpp" />
-    <ClCompile Include="ClothSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MultipleParticleSystem.cpp" />
     <ClCompile Include="particleSystem.cpp" />
-    <ClCompile Include="pendulumSystem.cpp" />
-    <ClCompile Include="simpleSystem.cpp" />
-    <ClCompile Include="TimeStepper.cpp" />
     <ClCompile Include="vecmath\src\Matrix2f.cpp" />
     <ClCompile Include="vecmath\src\Matrix3f.cpp" />
     <ClCompile Include="vecmath\src\Matrix4f.cpp" />
@@ -100,18 +93,13 @@
     <ClCompile Include="WaveSystemDielectric.cpp" />
     <ClCompile Include="WaveSystemParallel.cpp" />
     <ClCompile Include="WaveSystemPoint.cpp" />
+    <ClCompile Include="WaveSystemRefraction.cpp" />
     <ClCompile Include="WaveSystemWall.cpp" />
+    <ClCompile Include="WaveSystemWallDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BoxSpringSystem.h" />
-    <ClInclude Include="BoxSystem.h" />
     <ClInclude Include="camera.h" />
-    <ClInclude Include="ClothSystem.h" />
-    <ClInclude Include="MultipleParticleSystem.h" />
     <ClInclude Include="particleSystem.h" />
-    <ClInclude Include="pendulumSystem.h" />
-    <ClInclude Include="simpleSystem.h" />
-    <ClInclude Include="TimeStepper.hpp" />
     <ClInclude Include="vecmath\include\Matrix2f.h" />
     <ClInclude Include="vecmath\include\Matrix3f.h" />
     <ClInclude Include="vecmath\include\Matrix4f.h" />
@@ -125,7 +113,9 @@
     <ClInclude Include="WaveSystemDielectric.h" />
     <ClInclude Include="WaveSystemParallel.h" />
     <ClInclude Include="WaveSystemPoint.h" />
+    <ClInclude Include="WaveSystemRefraction.h" />
     <ClInclude Include="WaveSystemWall.h" />
+    <ClInclude Include="WaveSystemWallDraw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

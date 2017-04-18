@@ -30,6 +30,7 @@ public:
 
 
 	void toggleBreeze() { switch_breeze = !switch_breeze; }
+	void toogleBoarderReflection() { switchBoarderReflection = !switchBoarderReflection; }
 	void toggleWire() { count_wire = (count_wire < 6) ? count_wire + 1 : 0; }
 	void toggleBoxFrame() { count_box = (count_box < 3)? count_box + 1 : 0; }
 	void takeStep(float stepSize);
@@ -60,6 +61,7 @@ protected:
 	float part_mass;
 
 	bool switch_breeze;
+	bool switchBoarderReflection;
 
 	// Variables for particles
 	int n_particles;

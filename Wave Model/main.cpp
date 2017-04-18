@@ -13,18 +13,13 @@
 #include "camera.h"
 
 
-#include "timeStepper.hpp"
-#include "simpleSystem.h"
-#include "pendulumSystem.h"
-#include "clothSystem.h"
-#include "MultipleParticleSystem.h"
-#include "BoxSystem.h"
-#include "BoxSpringSystem.h"
 #include "WaveSystem2D.h"
 #include "WaveSystemWall.h"
 #include "WaveSystemDielectric.h"
 #include "WaveSystemParallel.h"
 #include "WaveSystemPoint.h"
+#include "WaveSystemRefraction.h"
+#include "WaveSystemWallDraw.h"
 
 using namespace std;
 
@@ -32,31 +27,28 @@ using namespace std;
 namespace
 {
 
-	bool isCloth_ON = false;
-
+	bool systemON = true;
 	
 	ParticleSystem *displayedSystem;
-	TimeStepper* timeStepperRK4;
-	TimeStepper* timeStepperEuler;
-	TimeStepper* timeStepperTrap;
+	//TimeStepper* timeStepperRK4;
+	//TimeStepper* timeStepperEuler;
+	//TimeStepper* timeStepperTrap;
 	float timeStep;
 
 
 	WaveSystem2D* waveSystem10x30 = new WaveSystem2D(40, 100, 0.02, 0.0002);
-	WaveSystemWall* waveSystemWall = new WaveSystemWall(75, 75, 0.02, 0.0002);
+	WaveSystemWall* waveSystemWall = new WaveSystemWall(40, 100, 0.02, 0.0002);
 	WaveSystemDielectric* waveSystemDielectric = new WaveSystemDielectric(40, 80, 0.02, 0.0002);
 	WaveSystemParallel* waveSystemParallel = new WaveSystemParallel(40, 80, 0.02, 0.0002);
 	WaveSystemPoint* waveSystemPoint = new WaveSystemPoint(40, 80, 0.02, 0.0002);
+	WaveSystemRefraction* waveSystemRefraction = new WaveSystemRefraction(75, 75, 0.02, 0.0002);
+	WaveSystemWallDraw* waveSystemWallDraw = new WaveSystemWallDraw(60, 60, 0.02, 0.0002);
 
 	void initSystem(int argc, char * argv[])
 	{
 		srand(time(NULL));
 
 		char * integrator = argv[1];
-
-		timeStepperRK4 = new RK4();
-		timeStepperEuler = new ForwardEuler();
-		timeStepperTrap = new Trapzoidal();
 		if (argc >= 2) {
 			char* timeString = argv[2];
 			timeStep = atof(timeString);
@@ -94,7 +86,7 @@ namespace
 
 	// These are state variables for the UI
 	bool g_mousePressed = false;
-
+	
 	// Declarations of functions whose implementations occur later.
 	void arcballRotation(int endX, int endY);
 	void keyboardFunc(unsigned char key, int x, int y);
@@ -115,7 +107,16 @@ namespace
 		case 27: // Escape key
 			exit(0);
 			break;
-
+		case '2':
+		{
+			displayedSystem = waveSystemWallDraw;
+			break;
+		}
+		case '3':
+		{
+			displayedSystem = waveSystemRefraction;
+			break;
+		}
 		case '4':
 		{
 			displayedSystem = waveSystemPoint;
@@ -143,33 +144,26 @@ namespace
 		}
 		case 'e':
 		{
-		//	boxSystem->toggleBoxFrame();
-		//	boxSpringSystem->toggleBoxFrame();
-			waveSystem10x30->toggleBoxFrame();
 			break;
 		}
 		case 'b':
 		{
-		//	clothSystem8x8->toggleBreeze();
-		//	clothSystem15x15->toggleBreeze();
-		//	multipleParticleSystem10x20x30->toggleBreeze();
-			waveSystem10x30->toggleBreeze();
+			waveSystemWallDraw->toogleBoarderReflection();
+			//waveSystemWallDraw->toogleWallReflection();
+			printf("toogelreflect");
 			break;
 		}
 		case 'w': {
-		//	pendulumSystem->toggleWire();
-		//	clothSystem8x8->toggleWire();
-		//	clothSystem15x15->toggleWire();
-		//	multipleParticleSystem10x20x30->toggleWire();
-			waveSystem10x30->toggleWire();
 			break;
 		}
 		case 'r':
 		{
-			displayedSystem = waveSystem10x30;
+			systemON = false;
+			waveSystemWallDraw->Initialize();
 			Matrix4f eye = Matrix4f::identity();
 			camera.SetRotation(eye);
 			camera.SetCenter(Vector3f::ZERO);
+			systemON = true;
 			break;
 		}
 		case ' ':
@@ -346,21 +340,16 @@ namespace
 		// Dump the image to the screen.
 		glutSwapBuffers();
 	}	
-	void stepSystem()
-	{
-		if (timeStepperRK4 != 0) {
-			//timeStepperRK4->takeStep(displayedSystem, timeStep);
-		}
-	}
+
 
 	void timerFunc(int t)
 	{
 		//stepSystem();
-
-		displayedSystem->takeTimeStep();
-		glutPostRedisplay();
-
-		glutTimerFunc(t, &timerFunc, t);
+		if (systemON) {
+			displayedSystem->takeTimeStep();
+			glutPostRedisplay();
+			glutTimerFunc(t, &timerFunc, t);
+		}
 	}
 
 

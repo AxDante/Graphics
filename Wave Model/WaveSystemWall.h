@@ -55,9 +55,9 @@ public:
 
 
 	int baseSpreadSpeed;
-	int maxCenter = 30;
-	float magnitudeReflectThreshold = 0.4;
-	float waveDecayRate = 0.01;
+	int maxCenter = 100;
+	float magnitudeReflectThreshold = 0.1;
+	float waveDecayRate = 0.05;
 
 protected:
 

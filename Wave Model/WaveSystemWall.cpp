@@ -11,7 +11,7 @@
 WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 {
 	part_mass = mass;
-	part_size = 0.2;
+	part_size = 0.35;
 	
 	columns = col;
 	rows = row;
@@ -45,9 +45,10 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 	//center.push_back((int)(row + 1) * (col) / 2 + col / 8);
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 4);
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 8);
-	center.push_back((int) row * col / 2 + col / 4 + row * col / 4);
 
-
+	//center.push_back((int) row * col / 2 + col / 4 + row * col / 4);
+	//center.push_back((int) row * col * 5 / 6 + col / 4);
+	center.push_back((int)row * col /2 + col/2);
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
@@ -196,15 +197,15 @@ void WaveSystemWall::takeTimeStep()
 							if (!newSource || isSource){
 
 									for (int seq = 1; seq < 5; seq++) {
-										bool foundNext = false;
+										//bool foundNext = false;
 										
 											int k = sequence[seq];
 											int thisParticle = springs[j][0];
 											int nextParticle = springs[j][k];
 											float disToThis = (nState[center[source] * 2] - nState[thisParticle * 2]).abs();
 											float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
-											if (disToNext <= sourceCounter[source]) {
-												foundNext = true;
+											//if (disToNext <= sourceCounter[source]) {
+												//foundNext = true;
 												//printf("%.2f sc: ", sourceCounter[source]);
 												if (nextParticle != -1) {
 													if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
@@ -214,10 +215,10 @@ void WaveSystemWall::takeTimeStep()
 														sourceChecked[source][i] = 1;
 													}
 												}
-											}else{
-												sourceCounter[source] += 0.1;
+											//}else{
+											//	sourceCounter[source] += 0.1;
 												//printf("%.2f sc: ", sourceCounter[source]);
-											}
+											//}
 										
 									}
 
@@ -284,7 +285,7 @@ void WaveSystemWall::draw()
 		for (int i = 0; i < state.size() / 2; i++) {
 			//printf("%.2f", energy[i]);				
 			Vector3f pos = state[i * 2];
-			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5 * pos[1] / 3 + 0.5), 0.5f, 1.0f };
+			GLfloat particleColor[] = { 0.5f, 1.0f * (0.5 * pos[1] / 2.5 + 0.5), 0.5f, 1.0f };
 			 
 
 			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, particleColor);

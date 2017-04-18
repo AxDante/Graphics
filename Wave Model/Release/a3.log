@@ -1,33 +1,21 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (a3.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  WaveSystemWall.cpp
-c:\users\icefox\documents\graphics\wave model\WaveSystemWall.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\icefox\documents\graphics\wave model\WaveSystemWall.h(60): warning C4305: 'initializing': truncation from 'double' to 'float'
-WaveSystemWall.cpp(14): warning C4305: '=': truncation from 'double' to 'float'
-WaveSystemWall.cpp(57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystemWall.cpp(63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-WaveSystemWall.cpp(84): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(117): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-WaveSystemWall.cpp(117): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-WaveSystemWall.cpp(160): warning C4305: 'initializing': truncation from 'double' to 'float'
-WaveSystemWall.cpp(164): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(165): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(167): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(186): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(220): warning C4305: '+=': truncation from 'double' to 'float'
-WaveSystemWall.cpp(229): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(266): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(286): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(289): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-WaveSystemWall.cpp(289): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-WaveSystemWall.cpp(295): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-WaveSystemWall.cpp(319): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(326): warning C4018: '<': signed/unsigned mismatch
-WaveSystemWall.cpp(327): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWall.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWall.h(60): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemRefraction.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemRefraction.h(60): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWallDraw.h(62): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWallDraw.h(63): warning C4305: 'initializing': truncation from 'double' to 'float'
+main.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(42): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(44): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(45): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(49): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+main.cpp(54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(57): warning C4305: '=': truncation from 'double' to 'float'
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
-  RK4.lib(RK4.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
-  Generating code
-  Finished generating code
-RK4.lib(RK4.obj) : warning LNK4099: PDB 'RK4.pdb' was not found with 'RK4.lib(RK4.obj)' or at 'C:\Users\IceFox\Documents\Graphics\Wave Model\Release\RK4.pdb'; linking object as if no debug info
-  a3.vcxproj -> C:\Users\IceFox\Documents\Graphics\Wave Model\Release\WaveGen.exe
-  a3.vcxproj -> C:\Users\IceFox\Documents\Graphics\Wave Model\Release\WaveGen.pdb (Full PDB)
+  a3.vcxproj -> C:\Users\IceFox\Desktop\GV\PROJ BACKUP\wm3\Wave Model\Release\WaveGen.exe
+  a3.vcxproj -> C:\Users\IceFox\Desktop\GV\PROJ BACKUP\wm3\Wave Model\Release\WaveGen.pdb (Full PDB)
