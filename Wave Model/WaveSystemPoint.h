@@ -56,7 +56,6 @@ protected:
 
 	int rows;
 	int columns;
-	//int layers;
 
 	float part_mass;
 

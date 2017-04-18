@@ -50,7 +50,8 @@ public:
 	vector< vector< int > > spreadCounter;
 	vector< vector< int > > sourceChecked;
 	vector< int > center;
-	
+	vector< vector< int > > toClaculate;
+	vector< float > sourceCounter;
 
 
 	int baseSpreadSpeed;

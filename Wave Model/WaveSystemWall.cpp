@@ -45,7 +45,9 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 	//center.push_back((int)(row + 1) * (col) / 2 + col / 8);
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 4);
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 8);
-	center.push_back((int)(row) * (col) / 2 + col / 4 +  10 * row);
+	center.push_back((int) row * col / 2 + col / 4 + row * col / 4);
+
+
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
@@ -82,6 +84,7 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 		vector<float > magnitudePush;
 		vector<int > spreadCountPush;
 		vector<int > sourceCheckPush;
+		vector<int > toCalculatePush;
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				if (i * columns + j == center[source]) {
@@ -95,7 +98,11 @@ WaveSystemWall::WaveSystemWall(int row, int col, float mass, float step)
 				spreadCountPush.push_back(baseSpreadSpeed);
 				sourceCheckPush.push_back(0);
 			}
+		}	
+		for (int ctr = 0; ctr < rows * columns; ctr++) {
+			toCalculatePush.push_back(ctr);
 		}
+		sourceCounter.push_back(0.0);
 		phaseStored.push_back(phasePush);
 		magnitudeStored.push_back(magnitudePush);
 		sourceChecked.push_back(sourceCheckPush);
@@ -166,36 +173,55 @@ void WaveSystemWall::takeTimeStep()
 								int thisParticle = springs[j][0];
 								int nextParticle = springs[j][k];
 								float disToThis = (nState[center[source] * 2] - nState[thisParticle * 2]).abs();
+								float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
 								float magnitudeNew = magnitudeStored[source][center[source]] * exp(-disToThis * waveDecayRate);
-								//printf("%.2f ", magnitudeNew);
-								if (springs[j][k] == -1){ // && magnitudeNew > magnitudeReflectThreshold) {
-									newSource = true;
-									springs[j][k] = -2;  // Prevent multiple calculation on the same obstacle and increase calculation speed
-								}
-								for (int sc = 0; sc < center.size(); sc++) {
-									if (center[sc] == i) {
-										isSource = true;
-										float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs() + 1;
-										magnitudeStored[source][i] = magnitudeStored[source][center[source]] * exp(-disToNext * waveDecayRate);
-										phaseStored[source][i] = disToNext;
+								//if (disToNext <= sourceCounter[source]) {
+								//	printf("%.2f sc: ", sourceCounter[source]);
+									if (springs[j][k] == -1) {
+										newSource = true;
+										springs[j][k] = -2;  // Prevent multiple calculation on the same obstacle and increase calculation speed
 									}
-								}
-							}
-							if (!newSource || isSource){
-								for (int seq = 1; seq < 5; seq++) {
-									int k = sequence[seq];
-									int thisParticle = springs[j][0];
-									int nextParticle = springs[j][k];
-									if (nextParticle != -1) {
-										if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
-											float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
-											magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-disToNext * waveDecayRate);
-											phaseStored[source][nextParticle] = disToNext;
-											spreadCounter[source][i] = baseSpreadSpeed;
-											sourceChecked[source][i] = 1;
+									for (int sc = 0; sc < center.size(); sc++) {
+										if (center[sc] == i) {
+											isSource = true;
+											magnitudeStored[source][i] = magnitudeStored[source][center[source]] * exp(-disToNext * waveDecayRate);
+											phaseStored[source][i] = disToNext;
 										}
 									}
-								}
+								//}
+								//else {
+									//sourceCounter[source] += 1;
+								//}
+							}
+							if (!newSource || isSource){
+
+									for (int seq = 1; seq < 5; seq++) {
+										bool foundNext = false;
+										
+											int k = sequence[seq];
+											int thisParticle = springs[j][0];
+											int nextParticle = springs[j][k];
+											float disToThis = (nState[center[source] * 2] - nState[thisParticle * 2]).abs();
+											float disToNext = (nState[center[source] * 2] - nState[nextParticle * 2]).abs();
+											if (disToNext <= sourceCounter[source]) {
+												foundNext = true;
+												//printf("%.2f sc: ", sourceCounter[source]);
+												if (nextParticle != -1) {
+													if (phaseStored[source][nextParticle] < phaseStored[source][thisParticle]) {
+														magnitudeStored[source][nextParticle] = magnitudeStored[source][center[source]] * exp(-disToNext * waveDecayRate);
+														phaseStored[source][nextParticle] = disToNext;
+														spreadCounter[source][i] = baseSpreadSpeed;
+														sourceChecked[source][i] = 1;
+													}
+												}
+											}else{
+												sourceCounter[source] += 0.1;
+												//printf("%.2f sc: ", sourceCounter[source]);
+											}
+										
+									}
+
+								
 							}
 							else {
 								if (center.size() < maxCenter) {
@@ -207,7 +233,7 @@ void WaveSystemWall::takeTimeStep()
 									for (int r = 0; r < rows; r++) {
 										for (int c = 0; c < columns; c++) {
 											if (r * columns + c == i) {
-												magnitudePush.push_back(magnitudeStored[source][i]/4.0f);
+												magnitudePush.push_back(magnitudeStored[source][i]/2.0f);
 												phasePush.push_back(phaseStored[source][i]);
 											}
 											else {
@@ -218,6 +244,7 @@ void WaveSystemWall::takeTimeStep()
 											sourceCheckPush.push_back(0);
 										}
 									}
+									sourceCounter.push_back(0.0);
 									phaseStored.push_back(phasePush);
 									magnitudeStored.push_back(magnitudePush);
 									sourceChecked.push_back(sourceCheckPush);
