@@ -56,6 +56,7 @@ public:
 	vector< vector< int > > toClaculate;
 	vector< float > sourceCounter;
 	vector< int > particleType;
+	
 
 	int baseSpreadSpeed;
 	int maxCenter = 10 ;

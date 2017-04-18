@@ -47,8 +47,8 @@ WaveSystemRefraction::WaveSystemRefraction(int row, int col, float mass, float s
 	//center.push_back((int)(row + 1) * (col) / 2 - col / 8);
 
 	//center.push_back((int) row * col / 2 + col / 4 + row * col / 4);
-	center.push_back((int) row * col * 5 / 6 + col / 4 +5);
-
+	center.push_back((int) row * col * 2 / 3 + col / 4 );
+	center.push_back((int)row * col * 1 / 3 - col / 4);
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {

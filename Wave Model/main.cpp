@@ -20,6 +20,8 @@
 #include "WaveSystemPoint.h"
 #include "WaveSystemRefraction.h"
 #include "WaveSystemWallDraw.h"
+#include "WaveSystemParallelNew.h"
+#include "WaveSystemDielectricNew.h"
 
 using namespace std;
 
@@ -43,6 +45,8 @@ namespace
 	WaveSystemPoint* waveSystemPoint = new WaveSystemPoint(40, 80, 0.02, 0.0002);
 	WaveSystemRefraction* waveSystemRefraction = new WaveSystemRefraction(75, 75, 0.02, 0.0002);
 	WaveSystemWallDraw* waveSystemWallDraw = new WaveSystemWallDraw(60, 60, 0.02, 0.0002);
+	WaveSystemParallelNew* waveSystemParallelNew = new WaveSystemParallelNew(60, 60, 0.02, 0.0002);
+	WaveSystemDielectricNew* waveSystemDielectricNew = new WaveSystemDielectricNew(60, 60, 0.02, 0.0002);
 
 	void initSystem(int argc, char * argv[])
 	{
@@ -107,6 +111,11 @@ namespace
 		case 27: // Escape key
 			exit(0);
 			break;
+		case '1':
+		{
+			displayedSystem = waveSystemParallelNew;
+			break;
+		}
 		case '2':
 		{
 			displayedSystem = waveSystemWallDraw;
@@ -124,7 +133,7 @@ namespace
 		}
 		case '5':
 		{
-			displayedSystem = waveSystemParallel;
+			displayedSystem = waveSystemDielectricNew;
 			break;
 		}
 		case '6':

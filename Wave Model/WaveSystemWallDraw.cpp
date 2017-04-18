@@ -21,7 +21,6 @@ WaveSystemWallDraw::WaveSystemWallDraw(int row, int col, float mass, float step)
 
 void WaveSystemWallDraw::Initialize() {
 
-
 	sysCounter = 0.0f;
 	part_size = 0.35;
 	baseSpreadSpeed = 5;
@@ -39,8 +38,8 @@ void WaveSystemWallDraw::Initialize() {
 	//vector< float > vibrationValue;
 	//vector< float > energyStored;
 
-	switchBoarderReflection = true;
-	switchWallReflection = true;
+	switchBoarderReflection = false;
+	switchWallReflection = false;
 
 	m_vVecState.empty();
 
@@ -121,14 +120,15 @@ void WaveSystemWallDraw::Initialize() {
 	// SET UP WALLS
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
-			if (i > 0.6*rows && i < 0.63*rows && j > 0.5*columns + 6) {
+			if (i > 0.6*rows && i < 0.63*rows && j > 0.5*columns + 5) {
 				particleType[i * columns + j] = 1;
 			}
-			if (i > 0.6*rows && i < 0.63*rows && j < 0.5*columns - 6) {
+			if (i > 0.6*rows && i < 0.63*rows && j < 0.5*columns - 5) {
 				particleType[i * columns + j] = 1;
 			}
 			if (i > 0.6*rows && i < 0.63*rows && j < 0.5*columns + 5 && j > 0.5*columns - 5 ) {
 				particleType[i * columns + j] = 1;
+				//printf("sol%d ", i * columns + j);
 			}
 			if (i > 0.6*rows &&  j>0.3*columns && j < 0.6*columns) {
 				//sourceChecked[0][i * columns + j] = 1;
@@ -214,6 +214,14 @@ void WaveSystemWallDraw::takeTimeStep()
 										}
 										else if (particleType[nextParticle] == 1) {
 											springs[j][k] = -3;
+											printf("%d", 0);
+											//HARDCODE
+											if (i == 2245) {
+												newSource = true;
+											}
+											if (i == 2255) {
+												newSource = true;
+											}
 											if (switchWallReflection) newSource = true;
 										}
 									}
@@ -297,7 +305,7 @@ void WaveSystemWallDraw::takeTimeStep()
 
 		float totY = 0;
 		for (int source = 0; source < center.size(); source++) {
-			totY += magnitudeStored[source][i] * sin(500 * sysCounter - phaseStored[source][i]);
+			totY += magnitudeStored[source][i] * sin(5000 * sysCounter - phaseStored[source][i]);
 		}
 		nState[2 * i].y() = totY;// + totY2;
 

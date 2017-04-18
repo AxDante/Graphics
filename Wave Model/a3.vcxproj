@@ -91,7 +91,9 @@
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="WaveSystem2D.cpp" />
     <ClCompile Include="WaveSystemDielectric.cpp" />
+    <ClCompile Include="WaveSystemDielectricNew.cpp" />
     <ClCompile Include="WaveSystemParallel.cpp" />
+    <ClCompile Include="WaveSystemParrelNew.cpp" />
     <ClCompile Include="WaveSystemPoint.cpp" />
     <ClCompile Include="WaveSystemRefraction.cpp" />
     <ClCompile Include="WaveSystemWall.cpp" />
@@ -111,7 +113,9 @@
     <ClInclude Include="Wall.h" />
     <ClInclude Include="WaveSystem2D.h" />
     <ClInclude Include="WaveSystemDielectric.h" />
+    <ClInclude Include="WaveSystemDielectricNew.h" />
     <ClInclude Include="WaveSystemParallel.h" />
+    <ClInclude Include="WaveSystemParallelNew.h" />
     <ClInclude Include="WaveSystemPoint.h" />
     <ClInclude Include="WaveSystemRefraction.h" />
     <ClInclude Include="WaveSystemWall.h" />

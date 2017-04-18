@@ -15,7 +15,7 @@
 WaveSystem2D::WaveSystem2D(int row, int col, float mass, float step)
 {
 	part_mass = mass;
-	part_size = 0.2;
+	part_size = 0.35;
 	
 	columns = col;
 	rows = row;

@@ -1,21 +1,103 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (a3.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.cpp
-c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWall.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWall.h(60): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemRefraction.h(59): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemRefraction.h(60): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWallDraw.h(62): warning C4305: 'initializing': truncation from 'double' to 'float'
+  WaveSystem2D.cpp
+WaveSystem2D.cpp(18): warning C4305: '=': truncation from 'double' to 'float'
+WaveSystem2D.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystem2D.cpp(58): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystem2D.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystem2D.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystem2D.cpp(152): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystem2D.cpp(156): warning C4018: '<': signed/unsigned mismatch
+WaveSystem2D.cpp(159): warning C4018: '<': signed/unsigned mismatch
+WaveSystem2D.cpp(205): warning C4018: '<': signed/unsigned mismatch
+WaveSystem2D.cpp(208): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystem2D.cpp(208): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystem2D.cpp(227): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystem2D.cpp(251): warning C4018: '<': signed/unsigned mismatch
+WaveSystem2D.cpp(258): warning C4018: '<': signed/unsigned mismatch
+WaveSystem2D.cpp(259): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  WaveSystemDielectric.cpp
+WaveSystemDielectric.cpp(18): warning C4305: '=': truncation from 'double' to 'float'
+WaveSystemDielectric.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemDielectric.cpp(58): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemDielectric.cpp(79): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystemDielectric.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystemDielectric.cpp(152): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystemDielectric.cpp(156): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(157): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(159): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(186): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(207): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(210): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystemDielectric.cpp(210): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystemDielectric.cpp(229): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystemDielectric.cpp(253): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(260): warning C4018: '<': signed/unsigned mismatch
+WaveSystemDielectric.cpp(261): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  WaveSystemParallel.cpp
+WaveSystemParallel.cpp(14): warning C4305: '=': truncation from 'double' to 'float'
+WaveSystemParallel.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemParallel.cpp(58): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemParallel.cpp(79): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystemParallel.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystemParallel.cpp(152): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystemParallel.cpp(156): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(158): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(160): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(189): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(209): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(212): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystemParallel.cpp(212): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystemParallel.cpp(231): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystemParallel.cpp(255): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(262): warning C4018: '<': signed/unsigned mismatch
+WaveSystemParallel.cpp(263): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  WaveSystemPoint.cpp
+WaveSystemPoint.cpp(16): warning C4305: '=': truncation from 'double' to 'float'
+WaveSystemPoint.cpp(50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemPoint.cpp(56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemPoint.cpp(77): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystemPoint.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystemPoint.cpp(104): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+WaveSystemPoint.cpp(105): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+WaveSystemPoint.cpp(152): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystemPoint.cpp(156): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(157): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(159): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(187): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(209): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(212): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystemPoint.cpp(212): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystemPoint.cpp(231): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystemPoint.cpp(255): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(262): warning C4018: '<': signed/unsigned mismatch
+WaveSystemPoint.cpp(263): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  WaveSystemWallDraw.cpp
 c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWallDraw.h(63): warning C4305: 'initializing': truncation from 'double' to 'float'
-main.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(42): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(44): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(45): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(49): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-main.cpp(54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(57): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\icefox\desktop\gv\proj backup\wm3\wave model\WaveSystemWallDraw.h(64): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystemWallDraw.cpp(25): warning C4305: '=': truncation from 'double' to 'float'
+WaveSystemWallDraw.cpp(61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWallDraw.cpp(67): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+WaveSystemWallDraw.cpp(89): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(145): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+WaveSystemWallDraw.cpp(145): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+WaveSystemWallDraw.cpp(188): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaveSystemWallDraw.cpp(192): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(193): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(195): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(228): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(266): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(307): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(327): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(331): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+WaveSystemWallDraw.cpp(331): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+WaveSystemWallDraw.cpp(340): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+WaveSystemWallDraw.cpp(364): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(371): warning C4018: '<': signed/unsigned mismatch
+WaveSystemWallDraw.cpp(372): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
   a3.vcxproj -> C:\Users\IceFox\Desktop\GV\PROJ BACKUP\wm3\Wave Model\Release\WaveGen.exe
   a3.vcxproj -> C:\Users\IceFox\Desktop\GV\PROJ BACKUP\wm3\Wave Model\Release\WaveGen.pdb (Full PDB)
